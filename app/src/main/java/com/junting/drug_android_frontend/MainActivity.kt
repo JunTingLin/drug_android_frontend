@@ -3,6 +3,7 @@ package com.junting.drug_android_frontend
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.TextView
+import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.core.view.iterator
@@ -24,7 +25,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -34,6 +34,7 @@ class MainActivity : AppCompatActivity() {
             number = 1
             isVisible = true
         }
+        setSupportActionBar(findViewById(R.id.topAppBar))
 
         navController = findNavController(R.id.nav_host_fragment_activity_main)
         // Passing each menu ID as a set of Ids because each
@@ -49,12 +50,12 @@ class MainActivity : AppCompatActivity() {
 
 
         // customize the action bar, whatever appearance you want it to be in action_bar_view
-        supportActionBar!!.setDisplayShowCustomEnabled(true)
-        supportActionBar!!.setCustomView(R.layout.action_bar_view)
+//        supportActionBar!!.setDisplayShowCustomEnabled(true)
+//        supportActionBar!!.setCustomView(R.layout.action_bar_view)
 
         // refresh the actionbar menu when change fragment
         navController.addOnDestinationChangedListener { _: NavController, d: NavDestination, _: Bundle? ->
-            supportActionBar!!.customView.findViewById<TextView>(R.id.action_bar_title).text = d.label
+//            supportActionBar!!.customView.findViewById<TextView>(R.id.action_bar_title).text = d.label
             supportActionBar!!.setDisplayHomeAsUpEnabled(true)
             supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_outline_menu_24)
         }

@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.appbar.MaterialToolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/topAppBar"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="?attr/actionBarSize">
 
-    <TextView
-        android:id="@+id/action_bar_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="藥要好好吃"
-        android:textSize="20sp"
-        android:gravity="center">
-    </TextView>
-
-</LinearLayout>
+</com.google.android.material.appbar.MaterialToolbar>

@@ -1,11 +1,13 @@
 package com.junting.drug_android_frontend;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.dynamsoft.core.CoreException;
 import com.dynamsoft.core.ImageData;
@@ -18,8 +20,10 @@ import com.dynamsoft.ddn.DetectResultListener;
 import com.dynamsoft.ddn.DetectedQuadResult;
 import com.dynamsoft.ddn.DocumentNormalizer;
 import com.dynamsoft.ddn.DocumentNormalizerException;
+import com.junting.drug_android_frontend.databinding.ActivityTakePhotoBinding;
 
 public class TakePhotoActivity extends AppCompatActivity {
+    private ActivityTakePhotoBinding binding;
 
     public static DocumentNormalizer mNormalizer;
     public static ImageData mImageData;
@@ -32,7 +36,11 @@ public class TakePhotoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_take_photo);
+        binding = ActivityTakePhotoBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        Toolbar toolbar = findViewById(R.id.topAppBar);
+        setSupportActionBar(toolbar);
 
         // Initialize license for Dynamsoft Document Normalizer SDK.
         // The license string here is a time-limited trial license. Note that network connection is required for this license to work.

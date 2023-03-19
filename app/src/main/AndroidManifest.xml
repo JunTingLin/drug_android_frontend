@@ -15,6 +15,25 @@
         android:theme="@style/Theme.Drug_android_frontend"
         tools:targetApi="31">
         <activity
+            android:name=".TestActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".TakePhotoActivity"
+            android:exported="false"
+            android:label="藥袋拍攝"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".QuadEditActivity"
+            android:exported="false"
+            android:label="請截取藥袋區域"
+            android:parentActivityName=".TakePhotoActivity" />
+        <activity
+            android:name=".ResultActivity"
+            android:exported="false"
+            android:label="藥袋圖片二質化"
+            android:parentActivityName=".QuadEditActivity" />
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name">
@@ -24,19 +43,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".TakePhotoActivity"
-            android:exported="false"
-            android:label="藥袋拍攝"
-            android:parentActivityName=".MainActivity"/>
-        <activity android:name=".QuadEditActivity"
-            android:exported="false"
-            android:label="請截取藥袋區域"
-            android:parentActivityName=".TakePhotoActivity"/>
-        <activity android:name=".ResultActivity"
-            android:exported="false"
-            android:label="藥袋圖片二質化"
-            android:parentActivityName=".QuadEditActivity"/>
+
     </application>
 
 </manifest>

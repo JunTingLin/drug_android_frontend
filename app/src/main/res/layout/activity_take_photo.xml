@@ -6,6 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".TakePhotoActivity">
 
+    <include
+        layout="@layout/action_bar_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <com.dynamsoft.dce.DCECameraView
         android:id="@+id/camera_view"
         android:layout_width="match_parent"

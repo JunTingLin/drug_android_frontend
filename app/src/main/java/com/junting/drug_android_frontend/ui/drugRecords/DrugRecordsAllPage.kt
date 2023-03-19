@@ -16,6 +16,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.junting.drug_android_frontend.R
 import com.junting.drug_android_frontend.TakePhotoActivity
+import com.junting.drug_android_frontend.TestActivity
 
 
 class DrugRecordsAllPage(context: Context, container: ViewGroup) {
@@ -74,7 +75,8 @@ class DrugRecordsAllPage(context: Context, container: ViewGroup) {
                 .setPositiveButton("手動") { dialogInterface, i ->
                     Toast.makeText(context, "Positive Button Clicked", Toast.LENGTH_SHORT)
                         .show()
-                    dialogInterface.dismiss()
+//                    dialogInterface.dismiss()
+                    startActivity(context, Intent(context, TestActivity::class.java), null)
                 }
                 .setNegativeButton("拍攝") { dialogInterface, i ->
                     startActivity(context, Intent(context, TakePhotoActivity::class.java), null)
