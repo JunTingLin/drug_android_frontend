@@ -6,11 +6,13 @@
     <string name="title_drugRecords">藥物紀錄</string>
     <string name="title_takeRecords">服用紀錄</string>
     <string name="title_tools">小工具</string>
+    <string name="title_inputBagInformation">輸入藥袋資訊</string>
 
     <string name="tab_all">全部</string>
     <string name="tab_hospital">醫院</string>
     <string name="tab_department">科別</string>
 
     <string name="add">新增</string>
+    <string name="drug_name">drug name</string>
 
 </resources>

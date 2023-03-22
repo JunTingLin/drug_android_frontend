@@ -34,7 +34,6 @@ android {
         viewBinding true
     }
 }
-
 dependencies {
 
     implementation 'androidx.core:core-ktx:1.7.0'
@@ -54,5 +53,7 @@ dependencies {
     //dynamsoftdocumentnormalizer
     implementation 'com.dynamsoft:dynamsoftdocumentnormalizer:1.0.21'
     implementation 'com.dynamsoft:dynamsoftcameraenhancer:3.0.3'
+    //material-component
+    implementation 'com.google.android.material:material:1.8.0'
 
 }
