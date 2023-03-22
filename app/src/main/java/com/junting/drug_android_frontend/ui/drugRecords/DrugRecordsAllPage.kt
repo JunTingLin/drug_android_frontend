@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+import com.junting.drug_android_frontend.InputManuallyActivity
 import com.junting.drug_android_frontend.R
 import com.junting.drug_android_frontend.TakePhotoActivity
 
@@ -72,8 +73,7 @@ class DrugRecordsAllPage(context: Context, container: ViewGroup) {
                 .setTitle("詢問")
                 .setMessage("請問您要使用何種方式輸入藥品?")
                 .setPositiveButton("手動") { dialogInterface, i ->
-                    Toast.makeText(context, "Positive Button Clicked", Toast.LENGTH_SHORT)
-                        .show()
+                    startActivity(context, Intent(context, InputManuallyActivity::class.java), null)
                     dialogInterface.dismiss()
                 }
                 .setNegativeButton("拍攝") { dialogInterface, i ->

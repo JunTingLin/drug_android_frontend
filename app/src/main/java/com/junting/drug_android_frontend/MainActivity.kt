@@ -1,10 +1,11 @@
 package com.junting.drug_android_frontend
 
 import android.os.Bundle
-import android.view.Menu
 import android.view.MenuItem
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
+import androidx.core.view.iterator
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
@@ -54,8 +55,26 @@ class MainActivity : AppCompatActivity() {
         // refresh the actionbar menu when change fragment
         navController.addOnDestinationChangedListener { _: NavController, d: NavDestination, _: Bundle? ->
             supportActionBar!!.customView.findViewById<TextView>(R.id.action_bar_title).text = d.label
-            invalidateOptionsMenu()
+            supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+            supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_outline_menu_24)
+        }
+
+        binding.drawerNav.menu.iterator().forEach { menuItem ->
+            menuItem.setOnMenuItemClickListener { _ ->
+                // navigate to other Activity or do something else
+                binding.drawer.closeDrawer(GravityCompat.START)
+                true
+            }
         }
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                binding.drawer.openDrawer(GravityCompat.START)
+                return true
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
+    }
 }

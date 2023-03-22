@@ -1,94 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="10dp"
-    android:layout_marginTop="10dp"
-    android:layout_marginRight="10dp"
-    app:cardCornerRadius="8dp">
+    android:layout_margin="10dp"
+    app:contentPadding="20dp"
+    app:cardCornerRadius="18dp"
+    app:cardElevation="20dp"
+    android:foreground="?android:attr/selectableItemBackgroundBorderless"
+    android:clickable="true">
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layout_item"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:focusable="true"
-        android:paddingBottom="20dp">
+        android:layout_height="match_parent">
 
-
-        <TextView
-            android:id="@+id/tv_drug_name"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="15dp"
-            android:text="藥物名稱"
-            android:textSize="30dp"
-            app:layout_constraintBottom_toTopOf="@+id/layout_dosage"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/layout_dosage"
+            <TextView
+                android:id="@+id/tv_drug_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:text="藥物英文學名"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_indication"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:text="藥物適應症"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/tv_frequency_dosage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:text="吃藥頻率  每次劑量"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tv_time_slot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:text="吃藥時間點"
+                android:textSize="20sp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_stock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="庫存" />
+
+            <TextView
+                android:id="@+id/tv_hospital_department"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:text="醫院名  科別名"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+
+
+        <ImageView
+            android:id="@+id/iv_notification"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="10dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@+id/layout_stock"
-            app:layout_constraintTop_toBottomOf="@+id/tv_drug_name">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/ic_outline_notifications_24" />
 
-            <TextView
-                android:id="@+id/tv_dosage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="劑量"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/tv_dosage_amount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="劑量數量"
-                android:textSize="16dp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_dosage" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/layout_stock"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            app:layout_constraintLeft_toRightOf="@+id/layout_dosage"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_drug_name">
-
-            <TextView
-                android:id="@+id/tv_stock"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="庫存"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tv_stock_amount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="庫存數量"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_stock" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 </androidx.cardview.widget.CardView>

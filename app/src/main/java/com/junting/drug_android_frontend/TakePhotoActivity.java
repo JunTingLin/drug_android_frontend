@@ -37,7 +37,7 @@ public class TakePhotoActivity extends AppCompatActivity {
         // Initialize license for Dynamsoft Document Normalizer SDK.
         // The license string here is a time-limited trial license. Note that network connection is required for this license to work.
         // You can also request an extension for your trial license in the customer portal: https://www.dynamsoft.com/customer/license/trialLicense?product=ddn&utm_source=installer&package=android
-        LicenseManager.initLicense("DLS2eyJvcmdhbml6YXRpb25JRCI6IjIwMDAwMSJ9", TakePhotoActivity.this, new LicenseVerificationListener() {
+        LicenseManager.initLicense(BuildConfig.Dynamsoft_KEY, TakePhotoActivity.this, new LicenseVerificationListener() {
             @Override
             public void licenseVerificationCallback(boolean isSuccess, CoreException error) {
                 if (!isSuccess) {
