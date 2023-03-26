@@ -15,10 +15,15 @@
         android:theme="@style/Theme.Drug_android_frontend"
         tools:targetApi="31">
         <activity
-            android:name=".InputManuallyActivity"
-            android:exported="false"
-            android:label="輸入藥袋資訊"
-            android:parentActivityName=".MainActivity"/>
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".TakePhotoActivity"
             android:exported="false"
@@ -35,15 +40,15 @@
             android:label="藥袋圖片二質化"
             android:parentActivityName=".QuadEditActivity" />
         <activity
-            android:name=".MainActivity"
-            android:exported="true"
-            android:label="@string/app_name">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:name=".InputManuallyActivity"
+            android:exported="false"
+            android:label="輸入藥袋資訊"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".DrugsInteractionActivity"
+            android:exported="false"
+            android:label="藥物交互作用確認"
+            android:parentActivityName=".MainActivity" />
     </application>
 
 </manifest>

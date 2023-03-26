@@ -1,15 +1,18 @@
 package com.junting.drug_android_frontend
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.junting.drug_android_frontend.databinding.ActivityInputManuallyBinding
 
 class InputManuallyActivity : AppCompatActivity() {
     private lateinit var binding: ActivityInputManuallyBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityInputManuallyBinding.inflate(layoutInflater)
@@ -20,6 +23,12 @@ class InputManuallyActivity : AppCompatActivity() {
         initTimingsCheckbox()
         initDosageDropdown()
         initButton()
+
+        val buttonClick = findViewById<Button>(R.id.btn_confirm)
+        buttonClick.setOnClickListener {
+            val intent = Intent(this, DrugsInteractionActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 

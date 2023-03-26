@@ -1,0 +1,15 @@
+{
+  "id": 19,
+  "degree": "Major",
+  "drugs": [
+    {
+      "id": 190,
+      "name": "Amiodarone"
+    },
+    {
+      "id": 77,
+      "name": "Digoxin"
+    }
+  ],
+  "cause": "這種組合可能會導致血液中digoxin濃度升高。如果您開始服用amiodarone，應仔細檢查digoxin於血液中的濃度。如果您出現噁心、食慾下降、視力障礙、脈搏緩慢或心律不齊等地高辛水平升高的症狀"
+}
