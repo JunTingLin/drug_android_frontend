@@ -1,0 +1,138 @@
+[
+  {
+    "id": 20,
+    "hospitalDepartment": "精神科",
+    "hospitalName": "臺北榮民總醫院",
+    "drug": {
+      "id": 125,
+      "name": "Alepan",
+      "appearance": "米黃,圓扁形,一字刻痕,錠劑。",
+      "indications": "器質性疾病或情緒壓力引起的焦慮。精神安定劑、酒精戒斷症狀。",
+      "sideEffect": "鎮靜、倦怠、憂鬱、頭暈、運動不能、健忘、唾液過度分泌、口乾、昏眩、激動、神經質。"
+    },
+    "onDemand": false,
+    "interactingDrugs": [],
+    "dosage": 1,
+    "stock": 0,
+    "position": 9,
+    "frequency": 3,
+    "timeSlot": [
+      "08:00",
+      "12:30",
+      "18:30"
+    ],
+    "timings": [
+      0,
+      3
+    ],
+    "//_comment": "0:飯前，1:飯後，2:與食物一起，3:睡前",
+    "notificationSetting": {
+      "status": false,
+      "startDate": "2022/12/31",
+      "remind": 5,
+      "repeat": 0
+    },
+    "returnSetting": {
+      "status": true,
+      "date": "2023/02/20",
+      "left": 10,
+      "repeat": 2
+    }
+  },
+  {
+    "id": 34,
+    "hospitalDepartment": "心臟內科",
+    "hospitalName": "臺北榮民總醫院",
+    "drug": {
+      "id": 77,
+      "name": "Acertil",
+      "appearance": "淡綠色桿狀膜衣錠，一面刻有兩個三角形及一個圓圈，雙邊緣有刻痕。",
+      "indications": "血管收縮素轉換酶抑制劑，用來治療高血壓、心臟衰竭。",
+      "sideEffect": "咳嗽、頭痛、頭暈、想睡、噁心、嘔吐、消化不良或輕微的腹瀉"
+    },
+    "onDemand": true,
+    "interactingDrugs": [
+      {
+        "id": 20,
+        "degree": "Major",
+        "name": "Doxycyline",
+        "cause": "互相影響療效或增加副作用的嚴重度"
+      },
+      {
+        "id": 54,
+        "degree": "Major",
+        "name": "Midamor",
+        "cause": "互相影響療效或增加副作用的嚴重度"
+      }
+    ],
+    "dosage": 1,
+    "stock": 20,
+    "position": 2,
+    "//_comment": "0:按需，不然空著不填會null很麻煩",
+    "frequency": 0,
+    "timeSlot": [],
+    "timings": [],
+    "notificationSetting": {
+      "status": false,
+      "startDate": "2022/12/31",
+      "remind": 5,
+      "repeat": 0
+    },
+    "returnSetting": {
+      "status": true,
+      "date": "2023/02/20",
+      "left": 10,
+      "repeat": 2
+    }
+  },
+  {
+    "id": 10,
+    "hospitalDepartment": "家庭內科",
+    "hospitalName": "臺北市立聯合醫院",
+    "drug": {
+      "id": 20,
+      "name": "Doxycycline",
+      "appearance": "深色膠囊。",
+      "indications": "治療多種細菌感染，其中主要包括痤瘡(Acne，又稱青春痘)、玫瑰斑(Rosacea)預防瘧疾(Malaria)。去氧羥四環素只能治療細菌感染，無法用於感冒、流感等病毒性感染",
+      "sideEffect": "劇烈頭痛(Severe headache)、頭暈(Dizziness)、視線模糊(Blurred vision)、發燒、發冷、身體疼痛、流感症狀、腺體腫脹、起疹子(Rash)或發癢、關節痛。"
+    },
+    "onDemand": false,
+    "interactingDrugs": [
+      {
+        "id": 77,
+        "degree": "Major",
+        "name": "Acertil",
+        "cause": "互相影響療效或增加副作用的嚴重度"
+      },
+      {
+        "id": 90,
+        "degree": "Minor",
+        "name": "Rifampin",
+        "cause": "可能會增加特定副作用的危險。"
+      }
+    ],
+    "dosage": 1,
+    "stock": 28,
+    "position": 5,
+    "frequency": 2,
+    "timeSlot": [
+      "07:30",
+      "11:30"
+    ],
+    "timings": [
+      1
+    ],
+    "notificationSetting": {
+      "status": true,
+      "startDate": "2022/12/31",
+      "remind": 5,
+      "repeat": 0
+    },
+    "returnSetting": {
+      "status": true,
+      "date": "2023/02/20",
+      "left": 10,
+      "repeat": 2
+    }
+  }
+]

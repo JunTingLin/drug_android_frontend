@@ -28,15 +28,27 @@
             android:name=".TakePhotoActivity"
             android:exported="false"
             android:label="藥袋拍攝"
-            android:parentActivityName=".MainActivity"/>
-        <activity android:name=".QuadEditActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".QuadEditActivity"
             android:exported="false"
             android:label="請截取藥袋區域"
-            android:parentActivityName=".TakePhotoActivity"/>
-        <activity android:name=".ResultActivity"
+            android:parentActivityName=".TakePhotoActivity" />
+        <activity
+            android:name=".ResultActivity"
             android:exported="false"
             android:label="藥袋圖片二質化"
-            android:parentActivityName=".QuadEditActivity"/>
+            android:parentActivityName=".QuadEditActivity" />
+        <activity
+            android:name=".InputManuallyActivity"
+            android:exported="false"
+            android:label="輸入藥袋資訊"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".DrugsInteractionActivity"
+            android:exported="false"
+            android:label="藥物交互作用確認"
+            android:parentActivityName=".MainActivity" />
     </application>
 
 </manifest>
