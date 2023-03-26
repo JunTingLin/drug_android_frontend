@@ -28,7 +28,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:padding="30dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -37,96 +38,253 @@
         tools:context=".InputManuallyActivity">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/ti_drug_name"
+            android:id="@+id/til_drug_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="32dp"
+            android:layout_marginBottom="15dp"
             android:hint="藥物名稱"
+            app:endIconMode="clear_text"
+            app:helperText="*必填"
+            app:helperTextTextColor="@color/design_default_color_error"
             app:startIconDrawable="@drawable/ic_outline_pill_24px">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="32dp"
-            android:hint="00000000">
+            android:layout_marginBottom="15dp"
+            android:hint="醫院"
+            app:endIconMode="clear_text"
+            app:helperText="*必填"
+            app:helperTextTextColor="@color/design_default_color_error"
+            app:startIconDrawable="@drawable/ic_outline_local_hospital_24">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="32dp"
-            android:hint="00000000">
+            android:layout_marginBottom="15dp"
+            android:hint="科別"
+            app:endIconMode="clear_text"
+            app:helperText="*必填"
+            app:helperTextTextColor="@color/design_default_color_error"
+            app:startIconDrawable="@drawable/ic_stethoscope_24px">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="32dp"
-            android:hint="00000000">
+            android:layout_marginBottom="15dp"
+            android:hint="適應症"
+            app:endIconMode="clear_text"
+            app:startIconDrawable="@drawable/ic_baseline_check_circle_outline_24">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:lines="3" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="32dp"
-            android:hint="00000000">
+            android:layout_marginBottom="15dp"
+            android:hint="副作用"
+            app:endIconMode="clear_text"
+            app:startIconDrawable="@drawable/ic_baseline_remove_circle_outline_24">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:lines="3" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="32dp"
-            android:hint="00000000">
+            android:layout_marginBottom="15dp"
+            android:hint="外觀"
+            app:endIconMode="clear_text"
+            app:startIconDrawable="@drawable/ic_outline_remove_red_eye_24">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:lines="3" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/black_border"
+            android:padding="15dp"
+            android:layout_marginBottom="15dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="按需要服用"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+                android:drawableStart="@drawable/ic_touch_app_24px"
+                android:drawablePadding="15dp"/>
+
+            <CheckBox
+                android:id="@+id/cb_on_demand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+            android:id="@+id/til_frequency"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:hint="一天X次"
+            app:helperText="*必填"
+            app:helperTextTextColor="@color/design_default_color_error"
+            app:startIconDrawable="@drawable/ic_outline_calendar_today_24">
+
+            <AutoCompleteTextView
+                android:id="@+id/actv_frequency"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none">
+
+            </AutoCompleteTextView>
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <LinearLayout
+            android:id="@+id/timings_outer_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/black_border"
+            android:padding="15dp"
+            android:layout_marginBottom="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="服藥時機"
+                android:drawableStart="@drawable/ic_outline_restaurant_menu_24"
+                android:drawablePadding="15dp"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:orientation="vertical">
+
+                <CheckBox
+                    android:id="@+id/cb_before_meal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="飯前" />
+
+                <CheckBox
+                    android:id="@+id/cb_after_meal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="飯後" />
+
+                <CheckBox
+                    android:id="@+id/cb_with_food"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="與食物一起" />
+
+                <CheckBox
+                    android:id="@+id/cb_before_sleep"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="睡前" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+            android:id="@+id/til_dosage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:hint="劑量"
+            app:helperText="*必填"
+            app:helperTextTextColor="@color/design_default_color_error"
+            app:startIconDrawable="@drawable/ic_outline_water_drop_24">
+
+            <AutoCompleteTextView
+                android:id="@+id/actv_dosage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none">
+
+            </AutoCompleteTextView>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="32dp"
-            android:hint="00000000">
+            android:layout_marginBottom="15dp"
+            android:hint="庫存"
+            app:endIconMode="clear_text"
+            app:helperText="*必填"
+            app:helperTextTextColor="@color/design_default_color_error"
+            app:startIconDrawable="@drawable/ic_outline_inventory_2_24">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:maxLines="1"
+                android:inputType="number"/>
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="32dp"
-            android:hint="00000000">
+            android:orientation="horizontal">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_cancel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="取消" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_confirm"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="確定" />
+
+        </LinearLayout>
+
+
+
+
     </LinearLayout>
-
 
 </ScrollView>
 >>>>>>> origin/master

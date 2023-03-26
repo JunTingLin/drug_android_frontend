@@ -7,12 +7,12 @@ data class DrugRecord(
     val hospitalDepartment: String,
     val hospitalName: String,
     val id: Int,
-//    val interaction: List<Any>?,
+    val interactingDrugs: List<InteractingDrugs>?,
     val notificationSetting: NotificationSetting,
     val onDemand: Boolean,
-    val position: List<Int>,
+    val position: Int,
     val returnSetting: ReturnSetting,
     val stock: Int,
     val timeSlot: List<String>,
-//    val timings: Int
+    val timings: List<Int>
 )
