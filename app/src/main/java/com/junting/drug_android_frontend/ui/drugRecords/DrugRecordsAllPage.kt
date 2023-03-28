@@ -1,11 +1,13 @@
 package com.junting.drug_android_frontend.ui.drugRecords
 
+import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.Observer
@@ -15,7 +17,9 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.junting.drug_android_frontend.InputManuallyDrugbagInfoActivity
 import com.junting.drug_android_frontend.R
-import com.junting.drug_android_frontend.TakePhotoActivity
+import com.wld.mycamerax.util.CameraParam
+import com.wld.mycamerax.util.Tools
+import com.permissionx.guolindev.PermissionX
 
 
 class DrugRecordsAllPage(context: Context, container: ViewGroup) {
@@ -76,7 +80,30 @@ class DrugRecordsAllPage(context: Context, container: ViewGroup) {
                     dialogInterface.dismiss()
                 }
                 .setNegativeButton("拍攝") { dialogInterface, i ->
-                    startActivity(context, Intent(context, TakePhotoActivity::class.java), null)
+                    PermissionX.init(this)
+                        .permissions(
+                            Manifest.permission.READ_EXTERNAL_STORAGE,
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                            Manifest.permission.CAMERA
+                        )
+                        .request { allGranted: Boolean, grantedList: List<String?>?, deniedList: List<String?>? ->
+                            if (allGranted) {
+                                val mCameraParam: CameraParam = CameraParam.Builder()
+                                    .setShowFocusTips(false)
+                                    .setActivity(context as AppCompatActivity)
+                                    .setMaskMarginLeftAndRight(Tools.dp2px(context, 20F))
+                                    .setMaskMarginTop(Tools.dp2px(context, 60F))
+                                    .setMaskRatioW(5)
+                                    .setMaskRatioH(8)
+                                    .build()
+                            } else {
+                                Toast.makeText(
+                                    context,
+                                    "These permissions are denied: \$deniedList",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
+                        }
                 }
             builder.create()
             builder.show()
