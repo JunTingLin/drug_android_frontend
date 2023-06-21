@@ -6,6 +6,12 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
+<!--    permission of bluetooth connection-->
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+<!--  -->
+
     <uses-feature android:name="android.hardware.camera.any" />
 
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
