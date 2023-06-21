@@ -9,7 +9,7 @@ import android.bluetooth.BluetoothSocket;
 import java.io.IOException;
 import java.io.OutputStream;
 
-public class bluetoothSocket extends Activity {
+public class BluetoothSocket extends Activity {
 
     private BluetoothSocket mmSocket;
     private OutputStream mmOutputStream;
