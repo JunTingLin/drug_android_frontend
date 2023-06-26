@@ -16,8 +16,7 @@ public class BluetoothSocket extends Activity {
 
 
     // calling this function to send the message to the device
-    //1 -> the first pillbox, 2 -> the second pillbox, so on and so forth
-    public void sendStringOverBluetooth(String message) {
+    public static void sendStringOverBluetooth(String message) {
         try {
             BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
             BluetoothDevice device = bluetoothAdapter.getRemoteDevice("78:21:84:8C:A6:92"); //MAC address of the device
@@ -32,4 +31,13 @@ public class BluetoothSocket extends Activity {
             e.printStackTrace();
         }
     }
+
+    public void openPillbox(int position){
+        sendStringOverBluetooth(String.format(position));
+    }
+
+    public void closePillbox(int position){
+        sendStringOverBluetooth(String.format(position));
+    }
+
 }
