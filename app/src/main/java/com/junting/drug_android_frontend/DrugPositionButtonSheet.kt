@@ -82,8 +82,14 @@ class DrugPositionButtonSheet(viewModel: DrugRecordsViewModel) : BottomSheetDial
         cardView?.setOnLongClickListener { view ->
             val builder = MaterialAlertDialogBuilder(requireContext())
 
-//            val bs = BluetoothSocket()
-//            bs.sendStringOverBluetooth("1")
+            // identify which cell is clicked
+            val selectedDrugPositionIdNumber =
+                resources.getResourceEntryName(cellView.id).substringAfterLast("_")
+//            Log.d("CellClicked", "Cell ID: $selectedDrugPositionIdNumber")
+
+            // send bluetooth signals
+            val bs = BluetoothSocket()
+            bs.openPillbox(selectedDrugPositionIdNumber)
 
             builder.setTitle("提示")
             builder.setMessage("該格藥盒已開啟")
