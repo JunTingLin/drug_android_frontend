@@ -1,10 +1,10 @@
-package com.junting.drug_android_frontend.services
+package com.junting.drug_android_frontend.services;
 
 
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
-import android.bluetooth.BluetoothSocket;
+//import android.bluetooth.BluetoothSocket;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -16,7 +16,7 @@ public class BluetoothSocket extends Activity {
 
 
     // calling this function to send the message to the device
-    public static void sendStringOverBluetooth(String message) {
+    public void sendStringOverBluetooth(String message) {
         try {
             BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
             BluetoothDevice device = bluetoothAdapter.getRemoteDevice("78:21:84:8C:A6:92"); //MAC address of the device
@@ -32,12 +32,12 @@ public class BluetoothSocket extends Activity {
         }
     }
 
-    public void openPillbox(int position){
-        sendStringOverBluetooth(String.format(position));
-    }
-
-    public void closePillbox(int position){
-        sendStringOverBluetooth(String.format(position));
-    }
-
+//    public void openPillbox(int position){
+//        sendStringOverBluetooth(String.format(position));
+//    }
+//
+//    public void closePillbox(int position){
+//        sendStringOverBluetooth(String.format(position));
+//    }
+//
 }

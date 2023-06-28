@@ -1,4 +1,4 @@
-package com.junting.drug_android_frontend.services
+package com.junting.drug_android_frontend.services;
 
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;

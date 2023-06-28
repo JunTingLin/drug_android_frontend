@@ -15,6 +15,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.junting.drug_android_frontend.databinding.FragmentPillBoxManagementBinding
 import com.junting.drug_android_frontend.model.drug_record.DrugRecord
 import com.junting.drug_android_frontend.ui.drugRecords.DrugRecordsViewModel
+import com.junting.drug_android_frontend.services.BluetoothSocket
 
 class DrugPositionButtonSheet(viewModel: DrugRecordsViewModel) : BottomSheetDialogFragment() {
 
@@ -80,6 +81,10 @@ class DrugPositionButtonSheet(viewModel: DrugRecordsViewModel) : BottomSheetDial
         }
         cardView?.setOnLongClickListener { view ->
             val builder = MaterialAlertDialogBuilder(requireContext())
+
+//            val bs = BluetoothSocket()
+//            bs.sendStringOverBluetooth("1")
+
             builder.setTitle("提示")
             builder.setMessage("該格藥盒已開啟")
             builder.setPositiveButton("確定") { _, _ ->
