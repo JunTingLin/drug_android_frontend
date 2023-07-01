@@ -5,7 +5,7 @@
 
         <variable
             name="viewModel"
-            type="com.junting.drug_android_frontend.ui.todayReminder.TodayReminderViewModel" />
+            type="com.junting.drug_android_frontend.OnDemandViewModel" />
     </data>
 
     <LinearLayout
@@ -40,7 +40,7 @@
                 android:id="@+id/tvDosage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{String.valueOf(viewModel.todayReminder.dosage)}" />
+                android:text="@{String.valueOf(viewModel.drugRecor.dosage)}" />
 
             <TextView
                 android:id="@+id/tvUnit"
@@ -94,12 +94,11 @@
                 android:orientation="horizontal">
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_later"
+                    android:id="@+id/btn_cancel"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:drawableRight="@drawable/ic_baseline_expand_more_24"
-                    android:text="延後提醒" />
+                    android:text="取消" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_confirm"

@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">HealthyMeds</string>
+
+    <!-- 共用   -->
+    <string name="add">Add</string>
+
+    <!-- 主畫面   -->
+    <string name="title_todayReminder">Reminders</string>
+    <string name="title_pillBoxManagement">PillBox</string>
+    <string name="title_drugRecords">Drugs</string>
+    <string name="title_takeRecords">History</string>
+    <string name="title_tools">Tools</string>
+
+    <!-- 藥物紀錄   -->
+    <string name="tab_all">All</string>
+    <string name="tab_hospital">By Hospital</string>
+    <string name="tab_department">By Department</string>
+
+    <!-- 服用紀錄   -->
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="saturday">Saturday</string>
+    <string name="sunday">Sunday</string>
+
+
+</resources>

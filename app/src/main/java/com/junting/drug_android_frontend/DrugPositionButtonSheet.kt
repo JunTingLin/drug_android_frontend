@@ -57,6 +57,11 @@ class DrugPositionButtonSheet(viewModel: DrugRecordsViewModel) : BottomSheetDial
                 .forEach { record -> viewManager.showCell(record.position, record,false) }
             positions.forEach { i -> viewManager.closeProgressBar(i) }
         }
+
+        val inflater = LayoutInflater.from(context)
+        val instructionLayout = inflater.inflate(R.layout.instruction_short_long, binding.llInstruction, false)
+        binding.llInstruction.addView(instructionLayout)
+
         return binding.root
     }
 

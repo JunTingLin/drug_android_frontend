@@ -10,6 +10,7 @@ import com.junting.drug_android_frontend.model.take_record.DateTimeSlotRecord
 import com.junting.drug_android_frontend.model.take_record.Medication
 import com.junting.drug_android_frontend.model.take_record.TakeRecord
 import com.junting.drug_android_frontend.model.take_record.TimeSlotRecord
+import com.junting.drug_android_frontend.model.today_reminder.TodayReminder
 import com.junting.drug_android_frontend.services.ITakeRecordService
 import kotlinx.coroutines.launch
 
@@ -17,14 +18,41 @@ class TakeRecordsViewModel : ViewModel(){
     private val _takeRecords = MutableLiveData<List<TakeRecord>>()
     val takeRecords: LiveData<List<TakeRecord>> = _takeRecords
 
+    private val _takeRecord = MutableLiveData<TakeRecord>()
+    val takeRecord: LiveData<TakeRecord> = _takeRecord
+
     private val _medications = MutableLiveData<List<Medication>>()
     val medications: LiveData<List<Medication>> = _medications
 
     private val _dateTimeSlotRecord = MutableLiveData<List<DateTimeSlotRecord>>()
     val dateTimeSlotRecords: LiveData<List<DateTimeSlotRecord>> = _dateTimeSlotRecord
 
+    fun setDosage(dosage: Int) {
+        val info: TakeRecord = _takeRecord.value!!
+        info.dosage = dosage
+        triggerUpdate(info)
+    }
+    fun setTimeSlot(timeSlot: String) {
+        val info: TakeRecord = _takeRecord.value!!
+        info.timeSlot = timeSlot
+        triggerUpdate(info)
+    }
+    fun setDate(date: String) {
+        val info: TakeRecord = _takeRecord.value!!
+        info.date = date
+        triggerUpdate(info)
+    }
+    fun setStatus(status: Int) {
+        val info: TakeRecord = _takeRecord.value!!
+        info.status = status
+        triggerUpdate(info)
+    }
 
-    fun fetchRecords() {
+    private fun triggerUpdate(newTakeRecord: TakeRecord) {
+        _takeRecord.value = newTakeRecord
+    }
+
+    fun fetchTakeRecords() {
         viewModelScope.launch {
             val takeRecordService = ITakeRecordService.getInstance()
             try {
@@ -34,6 +62,18 @@ class TakeRecordsViewModel : ViewModel(){
                 groupByDateAndTime(fetchedTakeRecords)
             } catch (e: Exception) {
                 Log.d("TakeRecordsViewModel", "fetch takeRecords failed")
+                Log.e("TakeRecordsViewModel", e.toString())
+            }
+        }
+    }
+    fun fetchTakeRecordById(id : Int) {
+        viewModelScope.launch {
+            val takeRecordService = ITakeRecordService.getInstance()
+            try {
+                val fetchedTakeRecord = takeRecordService.getTakeRecordById(id)
+                _takeRecord.value = fetchedTakeRecord
+            } catch (e: Exception) {
+                Log.d("TakeRecordsViewModel", "fetch takeRecord failed")
                 Log.e("TakeRecordsViewModel", e.toString())
             }
         }

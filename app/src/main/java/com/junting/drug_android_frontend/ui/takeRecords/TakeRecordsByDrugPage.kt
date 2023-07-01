@@ -41,7 +41,7 @@ class TakeRecordsByDrugPage(context: Context, container: ViewGroup) {
     }
 
     private fun initViewModel() {
-        this.viewModel.fetchRecords()
+        this.viewModel.fetchTakeRecords()
         this.viewModel.medications.observe(context as AppCompatActivity, Observer {
                 medications ->
             initExpandableList(medications)

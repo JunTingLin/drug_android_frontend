@@ -5,11 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
-    android:layout_marginLeft="10dp"
+    app:cardBackgroundColor="@android:color/transparent"
     android:clickable="true"
-    android:foreground="?android:attr/selectableItemBackgroundBorderless"
-    app:cardCornerRadius="18dp"
-    app:cardElevation="20dp"
     app:contentPadding="20dp">
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -17,62 +14,95 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="藥物名稱: "
-            android:textStyle="bold"
-            android:drawableLeft="@drawable/ic_outline_pill_24px"/>
+            android:orientation="vertical"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_drug_name"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_outline_pill_24px"
+                android:drawablePadding="15dp"
+                android:text="藥物名稱: "
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_drug_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Acertil" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Acertil"
-            android:layout_marginBottom="15dp"/>
+            android:orientation="vertical"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp">
 
-        <androidx.appcompat.widget.AppCompatTextView
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_outline_bar_chart_24"
+                android:drawablePadding="15dp"
+                android:text="交互作用等級: "
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_degree"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Major" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="交互作用等級: "
-            android:textStyle="bold"
-            android:drawableLeft="@drawable/ic_outline_bar_chart_24"/>
+            android:orientation="vertical"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_degree"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_outline_lightbulb_24"
+                android:drawablePadding="15dp"
+                android:text="原因: "
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_cause"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="互相影響療效或增加副作用的嚴重度" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Major"
-            android:layout_marginBottom="15dp"/>
+            android:orientation="vertical"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="原因: "
-            android:textStyle="bold"
-            android:drawableLeft="@drawable/ic_outline_lightbulb_24"/>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_outline_access_time_24"
+                android:drawablePadding="15dp"
+                android:text="服藥時間: "
+                android:textStyle="bold" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_cause"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="互相影響療效或增加副作用的嚴重度"
-            android:layout_marginBottom="15dp"/>
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="服藥時間: "
-            android:textStyle="bold"
-            android:drawableLeft="@drawable/ic_outline_access_time_24"/>
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_time_slots"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="08:30 14:00" />
-
-
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_time_slots"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="08:30 14:00" />
+        </LinearLayout>
 
 
     </androidx.appcompat.widget.LinearLayoutCompat>

@@ -73,6 +73,9 @@ class DrugRecordActivity : AppCompatActivity() {
         DialogUtils.initTextViewEditDialog(this,binding.llIndication, binding.tvIndication, "修改適應症",false){
             text -> viewModel.setIndication(text)
         }
+        DialogUtils.initTextViewEditDialog(this,binding.llIndicationTag, binding.tvIndicationTag, "修改適應症-標籤",false){
+                text -> viewModel.setIndicationTag(text)
+        }
         DialogUtils.initTextViewEditDialog(this,binding.llSideEffect, binding.tvSideEffect, "修改副作用",false){
             text -> viewModel.setSideEffect(text)
         }
@@ -87,7 +90,8 @@ class DrugRecordActivity : AppCompatActivity() {
         }
         initOndemandCheckbox()
         initTimingsCheckbox()
-        initButtonSheet(binding.llNotificationSetting, NotificationSettingButtonSheet(), "notificationSetting")
+        initButtonSheet(binding.llNotificationSetting, NotificationSettingButtonSheet(viewModel), "notificationSetting")
+        initButtonSheet(binding.llReturnSetting, ReturnSettingButtonSheet(viewModel), "returnSetting")
         initButtonSheet(binding.llDrugPosition, DrugPositionButtonSheet(viewModel), "drugPosition")
         initButton()
         initPhoneLongClickCall()
@@ -110,19 +114,35 @@ class DrugRecordActivity : AppCompatActivity() {
             }
             R.id.action_delete -> {
                 // 处理点击删除按钮的逻辑
-                Toast.makeText(this, "你點了刪除", Toast.LENGTH_SHORT).show()
+                val alertDialog = MaterialAlertDialogBuilder(this)
+                    .setTitle("詢問")
+                    .setMessage("確認要刪除?")
+                    .setPositiveButton("確認") { dialog, _ ->
+                        // 在這裡執行刪除操作
+                        val intent = Intent(this, MainActivity::class.java)
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                        intent.putExtra("fragmentName", "DrugRecordsFragment")
+                        startActivity(intent)
+                        dialog.dismiss()
+                    }
+                    .setNegativeButton("取消") { dialog, _ ->
+                        dialog.dismiss()
+
+                    }
+                    .create()
+                alertDialog.show()
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_drug_record, menu)
+        menuInflater.inflate(R.menu.menu_pause_delete, menu)
 
         // 根據條件控制菜單項目的顯示與隱藏
-        val drugRecordId = intent.getIntExtra("drugRecordId", 0)
-        val deleteMenuItem = menu?.findItem(R.id.action_delete)
-        deleteMenuItem?.isVisible = drugRecordId != 0
+//        val drugRecordId = intent.getIntExtra("drugRecordId", 0)
+//        val deleteMenuItem = menu?.findItem(R.id.action_delete)
+//        deleteMenuItem?.isVisible = drugRecordId != 0
 
         return true
     }

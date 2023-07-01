@@ -125,15 +125,18 @@
     </GridLayout>
 
     <LinearLayout
+        android:id="@+id/ll_instruction"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="40">
-        <!-- TextView 用於顯示使用說明 -->
-        <TextView
-            android:id="@+id/tv_instruction"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="使用說明：..." />
+<!--        &lt;!&ndash; TextView 用於顯示使用說明 &ndash;&gt;-->
+<!--        <TextView-->
+<!--            android:id="@+id/tv_instruction"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="使用說明：..." />-->
+
+<!--        <include layout="@layout/instruction_short_short_long" />-->
     </LinearLayout>
 
 

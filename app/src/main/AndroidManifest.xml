@@ -29,6 +29,14 @@
         android:theme="@style/Theme.Drug_android_frontend"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity android:name=".OnDemandActivity"
+            android:exported="false" />
+        <activity android:name=".OnDemandListActivity"
+            android:exported="false"
+            android:label="新增單筆服用紀錄"/>
+        <activity
+            android:name=".TakeRecordActivity"
+            android:exported="false"/>
         <activity
             android:name=".TodayReminderActivity"
             android:exported="false" />

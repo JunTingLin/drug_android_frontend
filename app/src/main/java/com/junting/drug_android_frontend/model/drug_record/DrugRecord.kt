@@ -10,6 +10,7 @@ data class DrugRecord(
     var id: Int = 0,
     var interactingDrugs: List<InteractingDrug>? = emptyList(),
     var notificationSetting: NotificationSetting = NotificationSetting(),
+    var indicationTag:String = "",
     var onDemand: Boolean = false,
     var position: Int = 0,
     var returnSetting: ReturnSetting = ReturnSetting(),

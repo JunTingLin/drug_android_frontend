@@ -70,6 +70,10 @@ class PillBoxManagementFragment : Fragment() {
             positions.forEach { i -> viewManager.closeProgressBar(i) }
         })
 
+        val inflater = LayoutInflater.from(context)
+        val instructionLayout = inflater.inflate(R.layout.instruction_short_short_long, binding.llInstruction, false)
+        binding.llInstruction.addView(instructionLayout)
+        
         return root
     }
     fun initCell(drugPositionId: Int) {

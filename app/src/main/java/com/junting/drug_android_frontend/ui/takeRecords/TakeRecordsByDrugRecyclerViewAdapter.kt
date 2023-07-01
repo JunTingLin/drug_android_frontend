@@ -1,6 +1,7 @@
 package com.junting.drug_android_frontend.ui.takeRecords
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +9,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.junting.drug_android_frontend.DrugRecordActivity
 import com.junting.drug_android_frontend.R
+import com.junting.drug_android_frontend.TakeRecordActivity
 import com.junting.drug_android_frontend.model.take_record.DateTakeRecordsRecord
 import com.junting.drug_android_frontend.model.take_record.TakeRecord
 import java.text.SimpleDateFormat
@@ -96,10 +99,11 @@ class TakeRecordsByDrugRecyclerViewAdapter(
         private val dosageTextView: TextView = itemView.findViewById(R.id.tv_dosage)
         private val timeSlotTextView: TextView = itemView.findViewById(R.id.tv_time_slot)
         private val statusImageView: ImageView = itemView.findViewById(R.id.iv_status)
+        private val takeRecordByDrugItemLinearLayout: ViewGroup = itemView.findViewById(R.id.ll_take_records_by_drug_item)
 
         fun bind(takeRecord: TakeRecord) {
             // 根據需要設置藥物記錄項目的內容
-            dosageTextView.text = takeRecord.dosage.toString()+"顆"
+            dosageTextView.text = takeRecord.dosage.toString()+"單位"
             timeSlotTextView.text = takeRecord.timeSlot
             if (takeRecord.status == 0) {
                 statusImageView.setImageResource(R.drawable.ic_baseline_question_mark_24)
@@ -110,8 +114,13 @@ class TakeRecordsByDrugRecyclerViewAdapter(
                 timeSlotTextView.setTextColor(ContextCompat.getColor(context, R.color.md_theme_light_error))
                 statusImageView.setImageResource(R.drawable.ic_baseline_cancel_24)
             }
-
+            takeRecordByDrugItemLinearLayout.setOnClickListener {
+                val intent = Intent(context, TakeRecordActivity::class.java)
+                intent.putExtra("takeRecordId", takeRecord.id)
+                context.startActivity(intent)
+            }
         }
+
     }
 }
 

@@ -5,9 +5,14 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_home"
+            android:id="@+id/nav_tools"
             android:icon="@drawable/ic_outline_build_24"
             android:title="@string/title_tools" />
+
+        <item
+            android:id="@+id/nav_language"
+            android:icon="@drawable/ic_outline_language_24"
+            android:title="中文/英文" />
 
     </group>
 </menu>

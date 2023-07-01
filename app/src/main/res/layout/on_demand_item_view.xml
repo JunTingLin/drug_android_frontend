@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackgroundBorderless"
+    app:cardCornerRadius="0dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/ll_remind_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <View
+                android:id="@+id/view_color"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.02"
+                android:background="@color/aboutOK" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.78"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_time"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_weight="0.3"
+                        android:gravity="center"
+                        android:text="按需要服用" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.7" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/iv_pill"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.3"
+                        android:src="@drawable/ic_outline_pill_24px" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.7"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_drug_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_weight="0.5"
+                            android:text="藥物名"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_indication_tag"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_weight="0.5"
+                            android:text="藥物適應症" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="0.2"
+                android:gravity="center_horizontal">
+
+                <!--            <ImageView-->
+                <!--                android:id="@+id/drag_icon"-->
+                <!--                android:layout_width="wrap_content"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:layout_gravity="center"-->
+                <!--                android:src="@drawable/ic_outline_drag_indicator_24" />-->
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/list_divider" />
+
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>

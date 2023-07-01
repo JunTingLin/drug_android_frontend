@@ -30,8 +30,16 @@ class DrugRecordsViewAdapter(private val context: Context, private val viewModel
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val drugRecord: DrugRecord = viewModel.records.value!!.get(position)
+
         holder.drugItemViewBinding.tvDrugName.text = drugRecord.drug.name
-        holder.drugItemViewBinding.tvIndication.text = drugRecord.drug.indication
+
+        if (drugRecord.indicationTag == "") {
+            holder.drugItemViewBinding.tvIndicationTag.visibility = View.GONE
+        }else{
+            holder.drugItemViewBinding.tvIndicationTag.visibility = View.VISIBLE
+            holder.drugItemViewBinding.tvIndicationTag.text = drugRecord.indicationTag
+        }
+
         if(drugRecord.frequency==0){
             holder.drugItemViewBinding.tvFrequencyDosage.text = "按需服用," + drugRecord.dosage.toString() + " 單位/次"
         }else{
@@ -46,7 +54,7 @@ class DrugRecordsViewAdapter(private val context: Context, private val viewModel
         holder.drugItemViewBinding.chipStock.text = "庫存: "+drugRecord.stock.toString()
         holder.drugItemViewBinding.tvHospitalDepartment.text = drugRecord.hospital.name.toString() + ", " + drugRecord.hospital.department.toString()
 
-        if (drugRecord.stock > 0) {
+        if (drugRecord.stock > drugRecord.returnSetting.left) {
             holder.drugItemViewBinding.chipStock.setChipBackgroundColorResource(R.color.md_theme_light_secondaryContainer)
         } else {
             holder.drugItemViewBinding.chipStock.setChipBackgroundColorResource(R.color.md_theme_dark_error)
@@ -63,7 +71,6 @@ class DrugRecordsViewAdapter(private val context: Context, private val viewModel
             val intent = Intent(context, DrugRecordActivity::class.java)
             intent.putExtra("drugRecordId", drugRecord.id)
             context.startActivity(intent)
-            Toast.makeText(context, String.format("You clicked %s", drugRecord.drug.name), Toast.LENGTH_SHORT).show()
         }
     }
 

@@ -1,6 +1,7 @@
 package com.junting.drug_android_frontend
 
 import DialogUtils
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,30 +10,27 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.junting.drug_android_frontend.databinding.ActionBarTakeRecordTodayReminderBinding
-import com.junting.drug_android_frontend.databinding.ActivityTodayReminderBinding
-import com.junting.drug_android_frontend.databinding.BottomSheetLaterBinding
+import com.junting.drug_android_frontend.databinding.ActivityOnDemandBinding
 import com.junting.drug_android_frontend.databinding.FragmentPillBoxManagementBinding
-import com.junting.drug_android_frontend.ui.todayReminder.TodayReminderViewModel
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
-class TodayReminderActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityTodayReminderBinding
+class OnDemandActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityOnDemandBinding
     private lateinit var bindingPillBox: FragmentPillBoxManagementBinding
     private lateinit var bindingActionBarTakeRecordTodayReminder: ActionBarTakeRecordTodayReminderBinding
-    var todayReminderId: Int? = null
-    private var viewModel: TodayReminderViewModel = TodayReminderViewModel()
+    var drugRecordId: Int? = null
+    private var viewModel: OnDemandViewModel = OnDemandViewModel()
     private lateinit var viewManager: PillBoxViewManager
     private val positions = (1..9).toList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityTodayReminderBinding.inflate(layoutInflater)
+        binding = ActivityOnDemandBinding.inflate(layoutInflater)
         bindingPillBox = FragmentPillBoxManagementBinding.inflate(layoutInflater)
         bindingActionBarTakeRecordTodayReminder = ActionBarTakeRecordTodayReminderBinding.inflate(layoutInflater)
         binding.lifecycleOwner = this
@@ -46,9 +44,9 @@ class TodayReminderActivity : AppCompatActivity() {
         supportActionBar?.setTitle("")
         supportActionBar?.setCustomView(bindingActionBarTakeRecordTodayReminder.root)
 
-        todayReminderId = intent.getSerializableExtra("takeRecordId") as Int?
-        if (todayReminderId != null) {
-            this.todayReminderId = todayReminderId
+        drugRecordId = intent.getSerializableExtra("drugRecordId") as Int?
+        if (drugRecordId != null) {
+            this.drugRecordId = drugRecordId
             initViewModel()
         }
         // 隱藏所有藥物位置
@@ -56,15 +54,11 @@ class TodayReminderActivity : AppCompatActivity() {
         initActualTime()
         initButton()
         initClickableTextView()
-
-        val inflater = LayoutInflater.from(this)
-        val instructionLayout = inflater.inflate(R.layout.instruction_background, bindingPillBox.llInstruction, false)
-        bindingPillBox.llInstruction.addView(instructionLayout)
     }
     private fun initViewModel() {
         binding.progressBar.visibility = View.VISIBLE
-        viewModel.fetchTodayReminderById(todayReminderId!!)
-        viewModel.todayReminder.observe(this, Observer {
+        viewModel.fetchDrugRecordById(drugRecordId!!)
+        viewModel.drugRecor.observe(this, Observer {
             Log.d("Observe todayReminder", "record: ${it.toString()}")
             bindingActionBarTakeRecordTodayReminder.tvDrugName.text = it.drug.name
             bindingActionBarTakeRecordTodayReminder.tvStock.text = it.stock.toString()+" 單位"
@@ -90,6 +84,10 @@ class TodayReminderActivity : AppCompatActivity() {
             }
             positions.forEach { i -> viewManager.closeProgressBar(i) }
         })
+
+        val inflater = LayoutInflater.from(this)
+        val instructionLayout = inflater.inflate(R.layout.instruction_background, bindingPillBox.llInstruction, false)
+        bindingPillBox.llInstruction.addView(instructionLayout)
     }
 
     private fun initClickableTextView() {
@@ -144,8 +142,11 @@ class TodayReminderActivity : AppCompatActivity() {
     }
 
     private fun initButton() {
-        binding.btnLater.setOnClickListener {
-            showDelayBottomSheet()
+        binding.btnCancel.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            intent.putExtra("fragmentName", "TodayReminderFragment")
+            startActivity(intent)
         }
         binding.btnConfirm.setOnClickListener{
             showConfirmDialog()
@@ -153,37 +154,7 @@ class TodayReminderActivity : AppCompatActivity() {
     }
 
 
-    fun showDelayBottomSheet() {
-        val bottomSheetDialog = BottomSheetDialog(this)
-        val binding = BottomSheetLaterBinding.inflate(layoutInflater)
-        val view = binding.root
-        bottomSheetDialog.setContentView(view)
 
-
-        val delayMinutes = listOf(10, 30, 45)
-
-        for (minutes in delayMinutes) {
-            val textView = when (minutes) {
-                10 -> binding.tvDelay10Minutes
-                30 -> binding.tvDelay30Minutes
-                45 -> binding.tvDelay45Minutes
-                else -> null
-            }
-
-            textView?.setOnClickListener {
-                addMinutesToActualTime(minutes)
-                bottomSheetDialog.dismiss()
-                finish()
-            }
-        }
-
-        binding.tvSkip.setOnClickListener {
-            bottomSheetDialog.dismiss()
-            finish()
-        }
-
-        bottomSheetDialog.show()
-    }
     private fun showConfirmDialog() {
         val parentView = bindingPillBox.root.parent as? ViewGroup
         parentView?.removeView(bindingPillBox.root)
@@ -192,22 +163,16 @@ class TodayReminderActivity : AppCompatActivity() {
             .setTitle("已服用藥物")
             .setView(bindingPillBox.root)
             .setPositiveButton("確定") { dialog, which ->
-                finish()
+                val intent = Intent(this, MainActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                intent.putExtra("fragmentName", "TodayReminderFragment")
+                startActivity(intent)
             }
             .create()
 
         dialog.show()
     }
 
-    private fun addMinutesToActualTime(minutes: Int) {
-
-        val format = SimpleDateFormat("HH:mm", Locale.getDefault())
-        val date = format.parse(viewModel.actualTakingTime.get()!!)!!
-        val calendar = Calendar.getInstance()
-        calendar.time = date
-        calendar.add(Calendar.MINUTE, minutes)
-
-    }
 
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

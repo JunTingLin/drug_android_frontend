@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
         <variable
             name="viewModel"
-            type="com.junting.drug_android_frontend.ui.todayReminder.TodayReminderViewModel" />
+            type="com.junting.drug_android_frontend.ui.takeRecords.TakeRecordsViewModel" />
     </data>
 
     <LinearLayout
@@ -40,7 +41,7 @@
                 android:id="@+id/tvDosage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{String.valueOf(viewModel.todayReminder.dosage)}" />
+                android:text="@{String.valueOf(viewModel.takeRecord.dosage)}" />
 
             <TextView
                 android:id="@+id/tvUnit"
@@ -54,6 +55,31 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@drawable/list_divider" />
+
+        <LinearLayout
+            android:id="@+id/ll_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="日期"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/ic_baseline_expand_more_24"
+                android:text="@{viewModel.takeRecord.date}" />
+
+        </LinearLayout>
 
 
         <LinearLayout
@@ -77,7 +103,38 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/ic_baseline_expand_more_24"
-                android:text="@{viewModel.actualTakingTime}" />
+                android:text="@{viewModel.takeRecord.timeSlot}" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/list_divider" />
+
+        <LinearLayout
+            android:id="@+id/ll_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="狀態"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/spinner_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackground"
+                android:drawableEnd="@drawable/ic_baseline_expand_more_24"
+                />
 
         </LinearLayout>
 
@@ -94,19 +151,18 @@
                 android:orientation="horizontal">
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_later"
+                    android:id="@+id/btn_cancel"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:drawableRight="@drawable/ic_baseline_expand_more_24"
-                    android:text="延後提醒" />
+                    android:text="取消" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_confirm"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="開啟藥盒" />
+                    android:text="確定" />
 
             </LinearLayout>
         </LinearLayout>

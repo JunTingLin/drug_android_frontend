@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="4"
         android:paddingLeft="60dp"
-        android:text="1 顆" />
+        android:text="1 單位" />
 
     <TextView
         android:id="@+id/tv_time_slot"

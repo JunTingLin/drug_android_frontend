@@ -42,8 +42,8 @@
                     android:id="@+id/switch_status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:checked="@{viewModel.record.notificationSetting.status}"
-                    android:onCheckedChanged="@{(buttonView, isChecked) -> viewModel.setNotificationSettingStatus(isChecked)}"/>
+                    android:checked="@{viewModel.record.returnSetting.status}"
+                    android:onCheckedChanged="@{(buttonView, isChecked) -> viewModel.setReturnSettingStatus(isChecked)}"/>
 
             </LinearLayout>
 
@@ -53,7 +53,7 @@
                 android:background="@drawable/list_divider" />
 
             <LinearLayout
-                android:id="@+id/ll_start_date"
+                android:id="@+id/ll_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="15dp"
@@ -68,16 +68,16 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:drawableLeft="@drawable/ic_outline_not_started_24"
+                    android:drawableLeft="@drawable/ic_outline_stop_circle_24"
                     android:drawablePadding="15dp"
-                    android:text="開始服藥日期: "
+                    android:text="預計回診日期: "
                     android:textStyle="bold" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tv_start_date"
+                    android:id="@+id/tv_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{viewModel.record.notificationSetting.startDate}" />
+                    android:text="@{viewModel.record.returnSetting.date}" />
 
             </LinearLayout>
 
@@ -87,7 +87,7 @@
                 android:background="@drawable/list_divider" />
 
             <LinearLayout
-                android:id="@+id/ll_repeat"
+                android:id="@+id/ll_left"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="15dp"
@@ -101,16 +101,41 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:drawableLeft="@drawable/ic_baseline_repeat_24"
+                    android:drawableLeft="@drawable/ic_outline_inventory_2_24"
                     android:drawablePadding="15dp"
-                    android:text="重複提醒次數: "
+                    android:text="剩餘庫存提醒: "
                     android:textStyle="bold" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tv_repeat"
+                    android:id="@+id/tv_left"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{String.valueOf(viewModel.record.notificationSetting.repeat)}" />
+                    android:text="@{String.valueOf(viewModel.record.returnSetting.left)}" />
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@drawable/list_divider" />
+
+            <LinearLayout
+                android:id="@+id/ll_instruction"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_instruction"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawablePadding="15dp"
+                    android:text=""
+                    android:textStyle="bold" />
 
 
             </LinearLayout>

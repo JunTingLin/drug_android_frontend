@@ -1,19 +1,22 @@
 <resources>
     <string name="app_name">藥要好好吃</string>
 
+    <!-- 共用   -->
+    <string name="add">新增</string>
+
+    <!-- 主畫面   -->
     <string name="title_todayReminder">今日提醒</string>
     <string name="title_pillBoxManagement">藥盒管理</string>
     <string name="title_drugRecords">藥物紀錄</string>
     <string name="title_takeRecords">服用紀錄</string>
     <string name="title_tools">小工具</string>
 
+    <!-- 藥物紀錄   -->
     <string name="tab_all">全部</string>
     <string name="tab_hospital">依醫院</string>
     <string name="tab_department">依科別</string>
 
-    <string name="add">新增</string>
-    <string name="title_activity_test">testActivity</string>
-
+    <!-- 服用紀錄   -->
     <string name="monday">週一</string>
     <string name="tuesday">週二</string>
     <string name="wednesday">週三</string>
@@ -21,14 +24,5 @@
     <string name="friday">週五</string>
     <string name="saturday">週六</string>
     <string name="sunday">週日</string>
-
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
 </resources>

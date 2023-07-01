@@ -41,7 +41,7 @@ class TakeRecordsByTimePage(context: Context, container: ViewGroup) {
         initViewModel()
     }
     private fun initViewModel() {
-        this.viewModel.fetchRecords()
+        this.viewModel.fetchTakeRecords()
         this.viewModel.dateTimeSlotRecords.observe(context as AppCompatActivity, Observer {
                 dateTimeSlotRecords ->
             Log.d("TakeRecordsByTimePage", "dateTimeSlotRecords: $dateTimeSlotRecords")

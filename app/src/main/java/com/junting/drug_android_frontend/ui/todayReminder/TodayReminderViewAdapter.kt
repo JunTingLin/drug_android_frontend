@@ -59,7 +59,7 @@ class TodayReminderViewAdapter()
         }
         viewHolder.llRemindItem.setOnClickListener {
             val intent = Intent(viewHolder.itemView.context, TodayReminderActivity::class.java)
-            intent.putExtra("todayReminderId", item.id)
+            intent.putExtra("takeRecordId", item.id)
             startActivity(viewHolder.itemView.context, intent, null)
         }
     }

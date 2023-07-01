@@ -40,7 +40,9 @@
                     android:background="?android:attr/selectableItemBackground"
                     android:clickable="true"
                     android:focusable="true"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="match_parent"
@@ -54,10 +56,14 @@
                         android:id="@+id/tv_drug_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="15dp"
                         android:text="@{viewModel.record.drug.name}" />
 
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@drawable/list_divider" />
 
                 <LinearLayout
                     android:id="@+id/ll_hospital"
@@ -66,7 +72,9 @@
                     android:background="?android:attr/selectableItemBackground"
                     android:clickable="true"
                     android:focusable="true"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="match_parent"
@@ -80,7 +88,6 @@
                         android:id="@+id/tv_hospital"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="15dp"
                         android:text="@{viewModel.record.hospital.name}" />
 
                 </LinearLayout>
@@ -92,7 +99,9 @@
                     android:background="?android:attr/selectableItemBackground"
                     android:clickable="true"
                     android:focusable="true"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="match_parent"
@@ -106,7 +115,6 @@
                         android:id="@+id/tv_department"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="15dp"
                         android:text="@{viewModel.record.hospital.department}" />
 
                 </LinearLayout>
@@ -118,7 +126,9 @@
                     android:background="?android:attr/selectableItemBackground"
                     android:clickable="true"
                     android:focusable="true"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="match_parent"
@@ -132,17 +142,27 @@
                         android:id="@+id/tv_phone_extension"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="15dp"
                         android:text="@{viewModel.record.hospital.phone + '-' + viewModel.record.hospital.extension}" />
 
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@drawable/list_divider" />
 
                 <ExpandableListView
                     android:id="@+id/expandable_list_interaction"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="15dp"
-                    android:groupIndicator="@drawable/ic_outline_shuffle_24" />
+                    android:groupIndicator="@drawable/ic_outline_shuffle_24"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@drawable/list_divider" />
 
                 <LinearLayout
                     android:id="@+id/ll_indication"
@@ -151,7 +171,9 @@
                     android:background="?android:attr/selectableItemBackground"
                     android:clickable="true"
                     android:focusable="true"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="match_parent"
@@ -165,10 +187,41 @@
                         android:id="@+id/tv_indication"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="15dp"
                         android:text="@{viewModel.record.drug.indication}" />
 
                 </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_indication_tag"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:orientation="vertical"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/ic_baseline_check_circle_outline_24"
+                        android:drawablePadding="15dp"
+                        android:text="適應症-標籤: "
+                        android:textStyle="bold" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_indication_tag"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewModel.record.indicationTag}" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@drawable/list_divider" />
 
                 <LinearLayout
                     android:id="@+id/ll_side_effect"
@@ -177,7 +230,9 @@
                     android:background="?android:attr/selectableItemBackground"
                     android:clickable="true"
                     android:focusable="true"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="match_parent"
@@ -191,10 +246,14 @@
                         android:id="@+id/tv_side_effect"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="15dp"
                         android:text="@{viewModel.record.drug.sideEffect}" />
 
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@drawable/list_divider" />
 
                 <LinearLayout
                     android:id="@+id/ll_appearance"
@@ -203,7 +262,9 @@
                     android:background="?android:attr/selectableItemBackground"
                     android:clickable="true"
                     android:focusable="true"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="match_parent"
@@ -217,21 +278,25 @@
                         android:id="@+id/tv_appearance"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="15dp"
                         android:text="@{viewModel.record.drug.appearance}" />
 
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@drawable/list_divider" />
 
                 <LinearLayout
                     android:id="@+id/ll_on_demand"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="15dp"
                     android:background="?android:attr/selectableItemBackground"
                     android:clickable="true"
                     android:focusable="true"
-
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp">
 
                     <TextView
                         android:layout_width="0dp"
@@ -250,11 +315,18 @@
 
                 </LinearLayout>
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@drawable/list_divider" />
+
                 <LinearLayout
                     android:id="@+id/ll_outerborder_time_slot"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tv_time_slot_title"
@@ -278,19 +350,25 @@
                         android:id="@+id/tv_time_slot_add"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="15dp"
                         android:background="?android:attr/selectableItemBackground"
                         android:drawableRight="@drawable/ic_baseline_add_24"
-                        android:padding="10dp"
+                        android:paddingTop="15dp"
+                        android:paddingBottom="15dp"
                         android:text="新增服藥時間" />
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@drawable/list_divider" />
 
 
                 <LinearLayout
                     android:id="@+id/ll_timings"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="15dp">
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -333,6 +411,11 @@
                     </LinearLayout>
                 </LinearLayout>
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@drawable/list_divider" />
+
                 <LinearLayout
                     android:id="@+id/ll_dosage"
                     android:layout_width="match_parent"
@@ -340,24 +423,30 @@
                     android:background="?android:attr/selectableItemBackground"
                     android:clickable="true"
                     android:focusable="true"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawableLeft="@drawable/ic_outline_water_drop_24"
                         android:drawablePadding="15dp"
-                        android:text="劑量: "
+                        android:text="劑量:"
                         android:textStyle="bold" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tv_dosage"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="15dp"
                         android:text="@{String.valueOf(viewModel.record.dosage)}" />
 
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@drawable/list_divider" />
 
                 <LinearLayout
                     android:id="@+id/ll_stock"
@@ -366,7 +455,9 @@
                     android:background="?android:attr/selectableItemBackground"
                     android:clickable="true"
                     android:focusable="true"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="match_parent"
@@ -380,16 +471,19 @@
                         android:id="@+id/tv_stock"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="15dp"
                         android:text="@{String.valueOf(viewModel.record.stock)}" />
 
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@drawable/list_divider" />
 
                 <LinearLayout
                     android:id="@+id/ll_notification_setting"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="15dp"
                     android:background="?android:attr/selectableItemBackground"
                     android:clickable="true"
                     android:focusable="true"
@@ -402,17 +496,21 @@
                         android:layout_height="wrap_content"
                         android:drawableLeft="@drawable/ic_outline_notifications_24"
                         android:drawablePadding="15dp"
-                        android:text="報警/提醒設定"
+                        android:text="吃藥警報設定"
                         android:textStyle="bold" />
 
 
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@drawable/list_divider" />
 
                 <LinearLayout
                     android:id="@+id/ll_return_setting"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="15dp"
                     android:background="?android:attr/selectableItemBackground"
                     android:clickable="true"
                     android:focusable="true"
@@ -425,16 +523,20 @@
                         android:layout_height="wrap_content"
                         android:drawableLeft="@drawable/ic_outline_notifications_24"
                         android:drawablePadding="15dp"
-                        android:text="回診/領藥提醒"
+                        android:text="回診警報設定"
                         android:textStyle="bold" />
 
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@drawable/list_divider" />
 
                 <LinearLayout
                     android:id="@+id/ll_drug_position"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="15dp"
                     android:background="?android:attr/selectableItemBackground"
                     android:clickable="true"
                     android:focusable="true"
@@ -452,10 +554,16 @@
 
                 </LinearLayout>
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@drawable/list_divider" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:paddingTop="15dp">
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn_cancel"
