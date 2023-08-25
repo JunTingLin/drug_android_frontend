@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "492668968463",
+    "project_id": "fcm-push-notification-e4aec",
+    "storage_bucket": "fcm-push-notification-e4aec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:492668968463:android:0678bdeeba840fcb938d7a",
+        "android_client_info": {
+          "package_name": "com.junting.drug_android_frontend"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "492668968463-vp40cg6ueq2vu2l58cjqn3uckn07dvnn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDifL__af4zqstAbbX2j4u2RCZ-kVra6IQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "492668968463-vp40cg6ueq2vu2l58cjqn3uckn07dvnn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

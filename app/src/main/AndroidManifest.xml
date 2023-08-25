@@ -6,6 +6,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+
     <!--    permission of bluetooth connection-->
     <uses-permission android:name="android.permission.BLUETOOTH"/>
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
@@ -33,6 +35,14 @@
         android:theme="@style/Theme.Drug_android_frontend"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+
+        <!--   Firebase cloud messaging     -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/app_image" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/black" />
 
         <activity
             android:name=".IntroductoryActivity"
@@ -87,6 +97,15 @@
             android:name=".PhotoResultActivity"
             android:exported="false"
             android:label="@string/photo_confirmation_page" />
+
+        <!--Firebase cloud messaging-->
+        <service
+            android:name=".MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
 
     </application>
 

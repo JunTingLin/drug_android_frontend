@@ -1,14 +1,21 @@
 package com.junting.drug_android_frontend
 
+import android.Manifest
 import android.content.BroadcastReceiver
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.SeekBar
 import android.widget.TextView
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
@@ -19,6 +26,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.messaging.FirebaseMessaging
 import com.junting.drug_android_frontend.databinding.ActivityMainBinding
 import com.junting.drug_android_frontend.databinding.FontSizeDialogLayoutBinding
 import com.junting.drug_android_frontend.libs.FontSizeManager
@@ -27,6 +35,12 @@ import com.junting.drug_android_frontend.libs.SharedPreferencesManager
 import com.junting.drug_android_frontend.ui.libs.updater.UpdateUIHelper
 import com.squareup.picasso.Picasso
 import java.util.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import java.net.HttpURLConnection
+import java.net.URL
+import java.util.Locale
 
 
 class MainActivity : AppCompatActivity() {
@@ -170,6 +184,20 @@ class MainActivity : AppCompatActivity() {
             navController.navigate(R.id.navigation_pillBoxManagement)
         }
         setupUpdateUIListener()
+
+        // sending FCM token
+        FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val token = task.result
+                Log.d("FCM Token", "Token: $token")
+                sendTokenToServer(token)
+            } else {
+                Log.e("FCM Token", "Error getting token: ${task.exception}")
+            }
+        }
+
+        //check push notification permission
+        askNotificationPermission()
     }
 
     // out of onCreate
@@ -300,5 +328,49 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         UpdateUIHelper.unListen(baseContext, setTodayReminderBadgeReceiver)
+    }
+
+    fun sendTokenToServer(token: String) {
+        GlobalScope.launch(Dispatchers.IO) {
+            val url = URL("https://drugnotification.boshwang.repl.co/addToken/${token}")
+
+            try {
+                val connection = url.openConnection() as HttpURLConnection
+                connection.requestMethod = "GET"
+
+                val responseCode = connection.responseCode
+                Log.d("FCM token", "Response Code: $responseCode")
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission(),
+    ) { isGranted: Boolean ->
+        if (isGranted) {
+            // FCM SDK (and your app) can post notifications.
+        } else {
+            Toast.makeText(this, "你不能收到吃藥通知", Toast.LENGTH_SHORT).show()
+        }
+    }
+    private fun askNotificationPermission() {
+        // This is only necessary for API level >= 33 (TIRAMISU)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) ==
+                PackageManager.PERMISSION_GRANTED
+            ) {
+                // FCM SDK (and your app) can post notifications.
+            } else if (shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS)) {
+                // TODO: display an educational UI explaining to the user the features that will be enabled
+                //       by them granting the POST_NOTIFICATION permission. This UI should provide the user
+                //       "OK" and "No thanks" buttons. If the user selects "OK," directly request the permission.
+                //       If the user selects "No thanks," allow the user to continue without notifications.
+            } else {
+                // Directly ask for the permission
+                requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+            }
+        }
     }
 }
