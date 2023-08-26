@@ -28,17 +28,18 @@ class MyFirebaseMessagingService : FirebaseMessagingService(){
         generateNotification(remoteMessage.notification!!.title!!, remoteMessage.notification!!.body!!)
 //        }
     }
-    @SuppressLint("RemoteViewLayout")
-    fun getRemoteView(notificationTitle: String, notificationDescription: String) : RemoteViews{
 
-        val remoteViews = RemoteViews("com.junting.drug_android_frontend", R.layout.notification)
-
-        remoteViews.setTextViewText(R.id.notification_title, notificationTitle)
-        remoteViews.setTextViewText(R.id.notification_description, notificationDescription)
+//    @SuppressLint("RemoteViewLayout")
+//    fun getRemoteView(notificationTitle: String, notificationDescription: String) : RemoteViews{
+//
+//        val remoteViews = RemoteViews("com.junting.drug_android_frontend", R.layout.notification)
+//
+//        remoteViews.setTextViewText(R.id.notification_title, notificationTitle)
+//        remoteViews.setTextViewText(R.id.notification_description, notificationDescription)
 //        remoteViews.setImageViewResource(R.id.notification_logo, R.drawable.app_image)
-
-        return remoteViews
-    }
+//
+//        return remoteViews
+//    }
     fun generateNotification(notificationTitle: String, notificationDescription: String){
 
         val intent = Intent(this, MainActivity::class.java)
@@ -48,12 +49,15 @@ class MyFirebaseMessagingService : FirebaseMessagingService(){
 
         var builder: NotificationCompat.Builder = NotificationCompat.Builder(applicationContext, channelId)
             .setSmallIcon(R.drawable.app_image)
+            .setContentTitle(notificationTitle)
+            .setContentText(notificationDescription)
             .setAutoCancel(true)
             .setVibrate(longArrayOf(1000, 1000, 1000, 1000))
             .setOnlyAlertOnce(true)
             .setContentIntent(pendingIntent)
 
-        builder = builder.setContent(getRemoteView(notificationTitle, notificationDescription))
+
+//        builder = builder.setContent(getRemoteView(notificationTitle, notificationDescription))
 
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
