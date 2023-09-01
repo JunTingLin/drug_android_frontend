@@ -332,7 +332,7 @@ class MainActivity : AppCompatActivity() {
 
     fun sendTokenToServer(token: String) {
         GlobalScope.launch(Dispatchers.IO) {
-            val url = URL("https://drugnotification.boshwang.repl.co/addToken/${token}")
+            val url = URL("https://bosh.pythonanywhere.com/addToken/${token}")
 
             try {
                 val connection = url.openConnection() as HttpURLConnection
