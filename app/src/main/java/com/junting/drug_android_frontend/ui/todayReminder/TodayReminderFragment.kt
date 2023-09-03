@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -89,7 +90,9 @@ class TodayReminderFragment : Fragment() {
                     if (responseMessage != null) {
 
                         val bs = BluetoothSocket()
-                        bs.openPillbox(item.position.toString())
+                        lifecycleScope.launch(Dispatchers.IO) {
+                            bs.openPillbox(item.position.toString())
+                        }
 
                         Toast.makeText(requireContext(), "服用成功", Toast.LENGTH_SHORT).show()
                         // 成功處理 TakeRecord
@@ -104,7 +107,9 @@ class TodayReminderFragment : Fragment() {
                             .setPositiveButton(resources.getString(R.string.close_pillbox)) { dialog, which ->
                                 Log.d("Bosh here", "close pillbox position: ${item.position}")
 
-                                bs.closePillbox(item.position.toString())
+                                lifecycleScope.launch(Dispatchers.IO) {
+                                    bs.closePillbox(item.position.toString())
+                                }
                             }
                             .create()
 
@@ -232,7 +237,9 @@ class TodayReminderFragment : Fragment() {
 
                         val bs = BluetoothSocket()
                         for (p in responseMessage.positions){
-                            bs.openPillbox(p.toString())
+                            lifecycleScope.launch(Dispatchers.IO) {
+                                bs.openPillbox(p.toString())
+                            }
                         }
 
                         val builder = MaterialAlertDialogBuilder(requireContext())
@@ -242,8 +249,9 @@ class TodayReminderFragment : Fragment() {
                             .setPositiveButton(resources.getString(R.string.close_pillbox)) { dialog, which ->
                                 Log.d("Bosh here", "close pillbox positions: ${responseMessage.positions}")
                                 // Handle positive button click
-                                bs.closeMutiplePillbox(responseMessage.positions.toIntArray())
-
+                                lifecycleScope.launch(Dispatchers.IO) {
+                                    bs.closeMultiplePillbox(responseMessage.positions.toIntArray())
+                                }
                                 binding.inputLayout.isEndIconVisible = false
                             }
                             .create()

@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.timepicker.MaterialTimePicker
@@ -176,7 +177,9 @@ class OnDemandActivity : AppCompatActivity() {
                 runOnUiThread(Runnable {
 
                     val bs = BluetoothSocket()
-                    bs.openPillbox(viewModel.drugRecord.value!!.position.toString())
+                    lifecycleScope.launch(Dispatchers.IO) {
+                        bs.openPillbox(viewModel.drugRecord.value!!.position.toString())
+                    }
 
                     Toast.makeText(this@OnDemandActivity, "服用成功", Toast.LENGTH_SHORT).show()
 
@@ -189,7 +192,9 @@ class OnDemandActivity : AppCompatActivity() {
                         .setPositiveButton(resources.getString(R.string.close_pillbox)) { dialog, which ->
                             Log.d("Bosh here", "close pillbox position: ${viewModel.drugRecord.value!!.position}")
 
-                            bs.closePillbox(viewModel.drugRecord.value!!.position.toString())
+                            lifecycleScope.launch(Dispatchers.IO) {
+                                bs.closePillbox(viewModel.drugRecord.value!!.position.toString())
+                            }
 
                             val intent = Intent(this@OnDemandActivity, MainActivity::class.java)
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)

@@ -9,9 +9,11 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.chip.Chip
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.junting.drug_android_frontend.DrugbagInfoActivity
@@ -21,6 +23,10 @@ import com.junting.drug_android_frontend.R
 import com.junting.drug_android_frontend.databinding.FragmentPillBoxManagementBinding
 import com.junting.drug_android_frontend.services.BTServices.BluetoothSocket
 import com.junting.drug_android_frontend.ui.drugRecords.DrugRecordsViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.io.IOException
 
 class PillBoxManagementFragment : Fragment() {
 
@@ -113,14 +119,18 @@ class PillBoxManagementFragment : Fragment() {
             val builder = MaterialAlertDialogBuilder(requireContext())
 
             val bs = BluetoothSocket()
-            bs.openPillbox(drugPositionId.toString())
+            lifecycleScope.launch(Dispatchers.IO) {
+                bs.openPillbox(drugPositionId.toString())
+            }
 
             builder.setTitle(resources.getString(R.string.hint_title))
             builder.setMessage(resources.getString(R.string.pillbox_management_hint_message))
             builder.setPositiveButton(resources.getString(R.string.close_pillbox)) { _, _ ->
                 Log.d("Bosh here", "close pillbox position: ${drugPositionId}")
 
-                bs.closePillbox(drugPositionId.toString())
+                lifecycleScope.launch(Dispatchers.IO) {
+                    bs.closePillbox(drugPositionId.toString())
+                }
                 // Handle positive button click
             }
             val alertDialog = builder.create()

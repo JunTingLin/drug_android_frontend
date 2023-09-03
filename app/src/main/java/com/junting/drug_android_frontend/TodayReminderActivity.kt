@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -296,7 +297,9 @@ class TodayReminderActivity : AppCompatActivity() {
             if (responseMessage != null) {
 
                 val bs = BluetoothSocket()
-                bs.openPillbox(viewModel.todayReminder.value!!.position.toString())
+                lifecycleScope.launch(Dispatchers.IO) {
+                    bs.openPillbox(viewModel.todayReminder.value!!.position.toString())
+                }
 
                 Toast.makeText(this@TodayReminderActivity, "服用成功", Toast.LENGTH_SHORT).show()
 
@@ -309,7 +312,9 @@ class TodayReminderActivity : AppCompatActivity() {
                     .setPositiveButton(resources.getString(R.string.close_pillbox)) { dialog, which ->
                         Log.d("Bosh here", "close pillbox position: ${viewModel.todayReminder.value!!.position}")
 
-                        bs.closePillbox(viewModel.todayReminder.value!!.position.toString())
+                        lifecycleScope.launch(Dispatchers.IO) {
+                            bs.closePillbox(viewModel.todayReminder.value!!.position.toString())
+                        }
 
                         val intent = Intent(this@TodayReminderActivity, MainActivity::class.java)
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)

@@ -5,11 +5,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.junting.drug_android_frontend.databinding.FragmentPillBoxManagementBinding
 import com.junting.drug_android_frontend.services.BTServices.BluetoothSocket
 import com.junting.drug_android_frontend.ui.drugRecords.DrugRecordsViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class DrugPositionButtonSheet(viewModel: DrugRecordsViewModel) : BottomSheetDialogFragment() {
 
@@ -82,14 +85,18 @@ class DrugPositionButtonSheet(viewModel: DrugRecordsViewModel) : BottomSheetDial
             val builder = MaterialAlertDialogBuilder(requireContext())
 
             var bs = BluetoothSocket()
-            bs.openPillbox(position.toString())
+            lifecycleScope.launch(Dispatchers.IO) {
+                bs.openPillbox(position.toString())
+            }
 
             builder.setTitle(resources.getString(R.string.hint_title))
             builder.setMessage(resources.getString(R.string.pillbox_management_hint_message))
             builder.setPositiveButton(resources.getString(R.string.close_pillbox)) { _, _ ->
                 Log.d("Bosh here", "close pillbox position: ${position}")
                 // Handle positive button click
-                bs.closePillbox(position.toString())
+                lifecycleScope.launch(Dispatchers.IO) {
+                    bs.closePillbox(position.toString())
+                }
             }
             val alertDialog = builder.create()
             alertDialog.show()
