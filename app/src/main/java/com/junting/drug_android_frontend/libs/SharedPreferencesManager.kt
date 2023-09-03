@@ -3,6 +3,7 @@ package com.junting.drug_android_frontend.libs
 import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
+import android.widget.Toast
 
 class SharedPreferencesManager(private val context: Context) {
 
@@ -79,5 +80,18 @@ class SharedPreferencesManager(private val context: Context) {
     }
     fun getDrugNames(): Set<String>? {
         return sharedPreferences.getStringSet("DRUG_NAMES", null)
+    }
+    fun setFakeFlag(flag: Boolean) {
+        val editor = sharedPreferences.edit()
+        editor.putBoolean("FAKE_FLAG", flag)
+        editor.apply()
+    }
+    fun getFakeFlag(): Boolean {
+        return sharedPreferences.getBoolean("FAKE_FLAG", false)
+    }
+    fun toggleFakeFlag() {
+        val currentFlag = getFakeFlag()
+        setFakeFlag(!currentFlag)
+        Toast.makeText(context, "Fake Flag: ${!currentFlag}", Toast.LENGTH_SHORT).show()
     }
 }

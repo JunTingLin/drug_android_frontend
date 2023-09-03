@@ -151,7 +151,6 @@
     <string name="pause">Pause</string>
     <string name="title_fontSize">Fontsize</string>
     <string name="title_drug_interaction_lookup">Drug Interaction Lookup</string>
-    <string name="title_dual_drug_interaction_lookup">Dual Drug Interaction Lookup</string>
     <string name="title_pill_box_bluetooth_search">Pill Box Bluetooth Search</string>
     <string name="switch_ch_en">Chinese/English</string>
     <string name="wel_page">Navigation Page</string>

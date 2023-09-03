@@ -9,23 +9,38 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 
-interface IDrugbagService {
+interface IDrugbagGetService {
     @GET("drugBagInformation/10/")
     suspend fun getDrugbagInfo(): DrugbagInformation
 
+    companion object {
+        var drugRecordGetService: IDrugbagGetService? = null
+        fun getInstance(): IDrugbagGetService {
+            if (drugRecordGetService == null) {
+                drugRecordGetService = Retrofit.Builder()
+                    .baseUrl(DataApiConstants.BASE_URL_HEROKU)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build().create(IDrugbagGetService::class.java)
+            }
+            return drugRecordGetService!!
+        }
+    }
+}
+
+interface IDrugbagPostService {
     @POST("process_string")
     suspend fun postDrugInfo(@Body params: UglyText): DrugbagInformation
 
     companion object {
-        var drugRecordService: IDrugbagService? = null
-        fun getInstance(): IDrugbagService {
-            if (drugRecordService == null) {
-                drugRecordService = Retrofit.Builder()
+        var drugRecordPostService: IDrugbagPostService? = null
+        fun getInstance(): IDrugbagPostService {
+            if (drugRecordPostService == null) {
+                drugRecordPostService = Retrofit.Builder()
                     .baseUrl(DataApiConstants.BASE_URL_SCHOOL)
                     .addConverterFactory(GsonConverterFactory.create())
-                    .build().create(IDrugbagService::class.java)
+                    .build().create(IDrugbagPostService::class.java)
             }
-            return drugRecordService!!
+            return drugRecordPostService!!
         }
     }
 }

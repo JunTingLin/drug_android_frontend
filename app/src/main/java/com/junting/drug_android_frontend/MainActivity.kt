@@ -4,8 +4,11 @@ import android.Manifest
 import android.content.BroadcastReceiver
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
 import android.util.Log
 import android.view.MenuItem
 import android.widget.ImageView
@@ -14,7 +17,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.navigation.NavController
@@ -164,6 +166,14 @@ class MainActivity : AppCompatActivity() {
                     binding.drawer.closeDrawer(GravityCompat.START)
                     true
                 }
+                R.id.nav_fake -> {
+                    Log.d("drawerNav.", "nav_fake")
+                    // 在這裡處理點擊事件
+                    //切換FakeFlag: 當FakeFlag為true時，會在PhotoResultActivity中直接顯示假的文字辨識結果
+                    sharedPreferencesManager.toggleFakeFlag()
+                    binding.drawer.closeDrawer(GravityCompat.START)
+                    true
+                }
 
                 else -> false
             }
@@ -248,6 +258,12 @@ class MainActivity : AppCompatActivity() {
         } else if (language == "zh") {
             binding.drawerNav.menu.findItem(R.id.nav_language).title = "English"
         }
+
+        // 使用相近顏色隱藏切換假資料的按鈕
+        val navFake = binding.drawerNav.menu.findItem(R.id.nav_fake)
+        val spannableTitle = SpannableString(navFake.title)
+        spannableTitle.setSpan(ForegroundColorSpan(Color.parseColor("#EEF5EE")), 0, spannableTitle.length, 0)
+        navFake.title = spannableTitle
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {

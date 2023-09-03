@@ -182,7 +182,6 @@
     <!--  menu/navigation_drawer  -->
     <string name="title_fontSize">字體大小</string>
     <string name="title_drug_interaction_lookup">藥物交互作用查詢</string>
-    <string name="title_dual_drug_interaction_lookup">雙藥物交互作用查詢</string>
     <string name="title_pill_box_bluetooth_search">藥盒藍芽搜</string>
     <string name="switch_ch_en">中文/英文</string>
     <string name="sign_out">登出</string>

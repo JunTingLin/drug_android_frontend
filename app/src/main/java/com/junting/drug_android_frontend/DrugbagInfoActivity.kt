@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.junting.drug_android_frontend.databinding.ActivityDrugbagInfoBinding
+import com.junting.drug_android_frontend.libs.SharedPreferencesManager
 import com.junting.drug_android_frontend.model.UglyText
 import com.junting.drug_android_frontend.model.drugbag_info.DrugbagInformation
 import com.junting.drug_android_frontend.R as MyAppR
@@ -44,7 +45,6 @@ class DrugbagInfoActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         if (intent.getStringExtra("UglyTextString")?.isNotEmpty() == true) {
             uglyText = UglyText(intent.getStringExtra("UglyTextString")!!)  //創建UglyText物件
-//            uglyText!!.input_drugBagInformation = testData
             supportActionBar?.setTitle(resources.getString(MyAppR.string.modify_drugbag_info))
             initDrugbagInfoViewModel()
         } else {
@@ -75,8 +75,12 @@ class DrugbagInfoActivity : AppCompatActivity() {
 
     private fun initDrugbagInfoViewModel() {
         binding.progressBar.visibility = View.VISIBLE
-//        viewModel.fetchDrugbagInfo()
-        viewModel.sendDrugbagInfo(uglyText = uglyText!!)
+        val fakeFlag = SharedPreferencesManager(this).getFakeFlag()
+        if(fakeFlag) {
+            viewModel.fetchDrugbagInfo()  //打做好的API假資料
+        } else {
+            viewModel.sendDrugbagInfo(uglyText = uglyText!!)  //送後端做AI提取真實關鍵字
+        }
         viewModel.drugbagInfo.observe(this, Observer {
             binding.cbOnDemand.isChecked = it.onDemand
 

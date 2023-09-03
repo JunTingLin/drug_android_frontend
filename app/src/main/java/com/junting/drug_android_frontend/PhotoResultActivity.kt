@@ -12,8 +12,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.junting.drug_android_frontend.databinding.ActivityPhotoResultBinding
 import com.junting.drug_android_frontend.libs.BitmapUtils
+import com.junting.drug_android_frontend.libs.SharedPreferencesManager
 import com.junting.drug_android_frontend.model.UglyText
 import com.junting.drug_android_frontend.services.CloudVisionService
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class PhotoResultActivity: AppCompatActivity() {
@@ -29,7 +33,17 @@ class PhotoResultActivity: AppCompatActivity() {
 
         val imageBase64 = PhotoTakeActivity.photoResultBase64
         binding.ivNormalize.setImageBitmap(BitmapUtils.base64ToBitmap(imageBase64))
-        viewModel.recognize(imageBase64)
+
+        val fakeFlag = SharedPreferencesManager(this).getFakeFlag()
+        if(fakeFlag) {
+            GlobalScope.launch(Dispatchers.Main) {
+                delay(2000)  // 等待 2 秒
+                viewModel.text.value = "any data you want to fake"
+            }
+        } else {
+            viewModel.recognize(imageBase64)  // 真的去辨識圖片
+        }
+
 
         this.viewModel.text.observe(this, Observer {
             // handle your text result there

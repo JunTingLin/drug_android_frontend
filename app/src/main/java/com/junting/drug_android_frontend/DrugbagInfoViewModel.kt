@@ -7,7 +7,8 @@ import androidx.lifecycle.viewModelScope
 import com.junting.drug_android_frontend.model.UglyText
 import com.junting.drug_android_frontend.model.drug_record.DrugRecord
 import com.junting.drug_android_frontend.model.drugbag_info.DrugbagInformation
-import com.junting.drug_android_frontend.services.IDrugbagService
+import com.junting.drug_android_frontend.services.IDrugbagGetService
+import com.junting.drug_android_frontend.services.IDrugbagPostService
 import kotlinx.coroutines.launch
 
 class DrugbagInfoViewModel : ViewModel() {
@@ -92,7 +93,7 @@ class DrugbagInfoViewModel : ViewModel() {
     fun fetchDrugbagInfo() {
 
         viewModelScope.launch {
-            val service = IDrugbagService.getInstance()
+            val service = IDrugbagGetService.getInstance()
             try {
                 drugbagInfo.value = service.getDrugbagInfo()
             }catch (e: Exception) {
@@ -102,7 +103,7 @@ class DrugbagInfoViewModel : ViewModel() {
     }
     fun sendDrugbagInfo(uglyText: UglyText) {
         viewModelScope.launch {
-            val service = IDrugbagService.getInstance()
+            val service = IDrugbagPostService.getInstance()
             try {
                 drugbagInfo.value = service.postDrugInfo(uglyText)
             }catch (e: Exception) {
