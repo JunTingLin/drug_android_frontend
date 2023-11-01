@@ -31,8 +31,8 @@ public class SerialSocket{
     public void run() {
         try {
             BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-            BluetoothDevice device = bluetoothAdapter.getRemoteDevice("78:21:84:8C:A6:92"); //MAC address of the device(old)
-//            BluetoothDevice device = bluetoothAdapter.getRemoteDevice("78:21:84:8E:6D:C6"); //MAC address of the device
+//            BluetoothDevice device = bluetoothAdapter.getRemoteDevice("78:21:84:8C:A6:92"); //MAC address of the device(old)
+            BluetoothDevice device = bluetoothAdapter.getRemoteDevice("78:21:84:8E:6D:C6"); //MAC address of the device
             socket = device.createRfcommSocketToServiceRecord(BLUETOOTH_SPP);
             socket.connect();
         }
