@@ -36,7 +36,7 @@ class DrugbagInfoActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
 
         checkBoxes = arrayOf<CheckBox>(
-            binding.cbAfterMeal,
+            binding.cbBeforeMeal,
             binding.cbAfterMeal,
             binding.cbWithFood,
             binding.cbBeforeSleep
