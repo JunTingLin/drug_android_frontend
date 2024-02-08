@@ -4,6 +4,9 @@
 
 團員成員：林俊霆、王柏勛、許珀維、蘇湘婷、賴思妤
 
+![project_drug_5](https://github.com/JunTingLin/drug_android_frontend/assets/92431095/7c668ec4-4204-4317-b1fc-2f61ff8ab081)
+
+
 ⚠️ 注意：此倉庫僅有前端代碼，後端請參考[medicinehelper](https://github.com/brankhsu/medicinehelper)⚠️
 
 ## 1. 前言
